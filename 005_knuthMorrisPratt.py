@@ -2,18 +2,21 @@
 
 # In Python, the KMP algorithm can be implemented manually using the standard Python libraries. Here is an example of how you can implement the KMP algorithm in Python
 
+# This will return Found substring at index 7 which is the index of the first letter of the substring "World" in the string "Hello, World!".
+
+
 def KMPSearch(string, substring):
     m = len(substring)
     n = len(string)
 
     # Create lps[] that will hold the longest prefix suffix values for substring
     lps = [0]*m
-    j = 0 # index for substring
+    j = 0  # index for substring
 
     # Preprocess the substring
     computeLPSArray(substring, m, lps)
 
-    i = 0 # index for string
+    i = 0  # index for string
     while i < n:
         if substring[j] == string[i]:
             i += 1
@@ -31,9 +34,10 @@ def KMPSearch(string, substring):
             else:
                 i += 1
 
+
 def computeLPSArray(substring, m, lps):
-    len = 0 # length of the previous longest prefix suffix
-    lps[0] = 0 # lps[0] is always 0
+    len = 0  # length of the previous longest prefix suffix
+    lps[0] = 0  # lps[0] is always 0
     i = 1
 
     # the loop calculates lps[i] for i = 1 to m-1
@@ -48,6 +52,7 @@ def computeLPSArray(substring, m, lps):
             else:
                 lps[i] = 0
                 i += 1
+
 
 string = "Hello, World!"
 substring = "World"
