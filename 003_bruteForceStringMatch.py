@@ -8,8 +8,9 @@ def findSubstring(text, subString):
 
         if j == sizeText:
             return i
-                
+
     return -1
+
 
 string = "Hello, World!"
 substring = "World"
