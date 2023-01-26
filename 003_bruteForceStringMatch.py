@@ -1,3 +1,5 @@
+# A brute force approach to finding a substring within a larger string is to compare the substring to every possible substring of the larger string.
+
 def findSubstring(text, subString):
     sizeText = len(text)
     sizesubString = len(subString)
@@ -6,7 +8,7 @@ def findSubstring(text, subString):
         while j < sizesubString and subString[j] == text[i + j]:
             j = j + 1
 
-        if j == sizeText:
+        if j == sizesubString:
             return i
 
     return -1
