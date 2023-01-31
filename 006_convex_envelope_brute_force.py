@@ -37,13 +37,6 @@ def convex_envelope_brute_force(points):
 
 # The examples 3 and 4 should return an empty list [] since the input points are collinear and do not form a Convex Envelope.
 
-
-# Example 0
-points = [(1, 1), (2, 2), (2, 0), (2, 4), (3, 3), (4, 2)]
-print(convex_envelope_brute_force(points))
-# []
-line()
-
 # Example 1
 points = [(0, 0), (1, 0), (1, 1), (0, 1), (0.5, 0.5)]
 print(convex_envelope_brute_force(points))
