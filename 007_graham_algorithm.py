@@ -60,10 +60,12 @@ def convex_envelope_graham(points: List[List[int]]) -> List[List[int]]:
     return hull
 
 
+# The expected output for Graham's algorithm is indeed [(0,0), (4,4)]. The Graham's algorithm takes a set of points as input and returns the convex hull of the points in the form of a list of points in counterclockwise order. The convex hull is the smallest convex polygon that contains all the points in the input set.
+
 # Example 0
-points = [(0,0), (1,1), (2,2), (3,3), (4,4)]
+points = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
 print(convex_envelope_graham(points))
-# [(0,0), (4,4), (3,3), (2,2), (1,1)]
+# [(0,0), (4,4)]
 line()
 
 # Example 1
