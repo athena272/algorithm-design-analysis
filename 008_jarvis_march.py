@@ -34,6 +34,14 @@ def convex_envelope_jarvis(points: List[List[int]]) -> List[List[int]]:
             l = i
 
 
+# If the output of the Jarvis's algorithm for the input [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)] is None, it means that the algorithm was not able to compute the convex hull of the input set of points. This can happen if the input set contains fewer than 3 points, as a convex hull can only be computed for sets of 3 or more points.
+
+# Example 0
+points = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+print(convex_envelope_jarvis(points))
+# [(0,0), (4,4)]
+line()
+
 points = [(0, 0), (1, 0), (1, 1), (0, 1), (0.5, 0.5)]
 print(convex_envelope_jarvis(points))
 # [(0, 0), (1, 0), (1, 1), (0, 1), (0, 0)]
@@ -55,4 +63,3 @@ line()
 points = [(0, 0), (1, 2), (2, 4), (3, 6), (4, 8)]
 print(convex_envelope_jarvis(points))
 # []
-
