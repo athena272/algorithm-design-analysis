@@ -6,3 +6,6 @@ def selection_sort(arr):
                 min_index = j
         arr[i], arr[min_index] = arr[min_index], arr[i]
     return arr
+
+array = [44, 15, 18, 50, -1, 2]
+print(selection_sort(array))
