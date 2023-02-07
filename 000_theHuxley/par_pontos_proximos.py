@@ -1,3 +1,11 @@
+# This code sorts the points based on their x-coordinate, and then uses the 
+# closest_pair_helper function to find the minimum distance between any two points. 
+# closest_pair_helper function uses divide and conquer to solve the problem, and the 
+# closest_pair function wraps the closest_pair_helper function and sorts the points 
+# before calling it. The minimum distance between any two points is returned by the 
+# closest_pair function and rounded to 4 decimal places.
+
+
 import math
 
 def dist(p1, p2):
