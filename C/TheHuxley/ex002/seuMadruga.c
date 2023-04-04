@@ -39,7 +39,7 @@ int main()
             continue;
         }
 
-        // Define o intervalo [0, soma] para a busca binária
+        // Define o intervalo [0, soma] e usa o método de busca binária para encontrar a altura da caixa d'água
         double esquerda = 0, direita = soma;
         while (direita - esquerda > PRECISAO)
         {
