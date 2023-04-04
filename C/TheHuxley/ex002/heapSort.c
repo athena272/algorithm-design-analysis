@@ -1,85 +1,83 @@
 #include <stdio.h>
 
-#define MAX 1000
-
-void heapify(int arr[], int n, int i)
+// Função para trocar dois elementos de lugar em um array
+void swap(int *a, int *b)
 {
-    int largest = i; // inicializa o maior como raiz
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    // se o filho esquerdo for maior que a raiz
+// Função para ajustar a heap, a partir do elemento index
+void maxHeapify(int arr[], int n, int index)
+{
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+    int largest = index;
+
     if (left < n && arr[left] > arr[largest])
         largest = left;
 
-    // se o filho direito for maior que o maior até agora
     if (right < n && arr[right] > arr[largest])
         largest = right;
 
-    // se o maior não é a raiz
-    if (largest != i)
+    if (largest != index)
     {
-        int temp = arr[i];
-        arr[i] = arr[largest];
-        arr[largest] = temp;
-
-        // heapify na subárvore afetada
-        heapify(arr, n, largest);
+        swap(&arr[index], &arr[largest]);
+        maxHeapify(arr, n, largest);
     }
 }
 
+// Função para construir a heap
+void buildMaxHeap(int arr[], int n)
+{
+    for (int i = n / 2 - 1; i >= 0; i--)
+        maxHeapify(arr, n, i);
+}
+
+// Função para implementar o Heapsort
 void heapSort(int arr[], int n)
 {
-    // constrói heap (reorganiza array)
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
-
-    printf("Estado inicial: ");
-    for (int i = 0; i < n; ++i)
-        printf("%d | ", arr[i]);
+    printf("Estado inicial:");
+    for (int i = 0; i < n; i++)
+        printf(" %d |", arr[i]);
     printf("\n");
 
-    // extrai os elementos um por um
+    // Construindo a heap máxima
+    buildMaxHeap(arr, n);
+
+    // Ordenando a partir da heap máxima
     for (int i = n - 1; i >= 0; i--)
     {
-        // move o atual elemento raiz para o final
-        int temp = arr[0];
-        arr[0] = arr[i];
-        arr[i] = temp;
+        swap(&arr[0], &arr[i]);
+        maxHeapify(arr, i, 0);
 
-        // chama max heapify na heap reduzida
-        heapify(arr, i, 0);
-
-        printf("Estado Atual da Heap: ");
-        for (int j = 0; j < i; ++j)
-            printf("%d | ", arr[j]);
+        printf("Estado Atual da Heap:");
+        for (int j = 0; j <= i; j++)
+            printf(" %d |", arr[j]);
         printf("\n");
 
-        printf("Maior elemento neste passo: %d\n", arr[0]);
+        printf("Maior elemento neste passo: %d\n", arr[i]);
     }
-
-    printf("Resultado Final: ");
-    for (int i = 0; i < n; ++i)
-        printf("%d | ", arr[i]);
-    printf("\n");
-}
-
-int readArray(int arr[])
-{
-    int n = 0;
-    while (scanf("%d", &arr[n]) == 1) // enquanto ler um número inteiro
-    {
-        n++; // incrementa o tamanho do array
-    }
-    return n; // retorna o tamanho do array
 }
 
 int main()
 {
-    int arr[MAX];
-    int n = readArray(arr); // lê a lista de números e armazena no array
+    // Lendo os números a serem ordenados
+    int arr[100], n = 0;
+    while (scanf("%d", &arr[n]) == 1)
+    {
+        n++;
+    }
 
-    heapSort(arr, n); // chama a função heapSort para ordenar o array
+    // Chamando o Heapsort
+    heapSort(arr, n);
+
+    // Imprimindo o resultado final
+    printf("Resultado Final:");
+    for (int i = 0; i < n; i++)
+        printf(" %d |", arr[i]);
+    printf("\n");
 
     return 0;
 }
