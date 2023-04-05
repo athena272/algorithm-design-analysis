@@ -1,78 +1,69 @@
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
 #include <stdlib.h>
 
-// Função para ordenação por contagem
-void counting_sort(int *A, int *C, int n, int k)
+#define MAX_NUM 1000
+
+void counting_sort(int arr[], int n)
 {
     int i, j;
+    int count[MAX_NUM + 1] = {0};
 
-    // Inicializando o array de contagem C com 0
-    for (i = 0; i <= k; i++)
-    {
-        C[i] = 0;
-    }
-
-    // Contando o número de ocorrências de cada elemento em A
-    for (j = 0; j < n; j++)
-    {
-        C[A[j]] = C[A[j]] + 1;
-    }
-
-    // Calculando a posição de cada elemento no array ordenado
-    for (i = 1; i <= k; i++)
-    {
-        C[i] = C[i] + C[i - 1];
-    }
-
-    // Construindo o array ordenado
-    int *B = malloc(n * sizeof(int));
-    for (j = n - 1; j >= 0; j--)
-    {
-        B[C[A[j]] - 1] = A[j];
-        C[A[j]] = C[A[j]] - 1;
-    }
-
-    // Imprimindo o array de contagem
-    for (i = 0; i <= k; i++)
-    {
-        printf("%d ", C[i]);
-    }
-    printf("\n");
-
-    // Imprimindo o array ordenado
     for (i = 0; i < n; i++)
     {
-        printf("%d ", B[i]);
+        count[arr[i]]++;
+    }
+
+    printf("%d", count[0]);
+    for (i = 1; i <= MAX_NUM; i++)
+    {
+        if ((count[i] == 0) && (count[i +1] == 0) && (count[i + 2] == 0) && (count[i + 3] == 0)) 
+        {
+            break;
+        }
+
+        printf(" %d", count[i]);
     }
     printf("\n");
 
-    free(B);
+    for (i = 1; i <= MAX_NUM; i++)
+    {
+        count[i] += count[i - 1];
+    }
+
+    int output[n];
+    for (i = n - 1; i >= 0; i--)
+    {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    for (i = 0; i < n; i++)
+    {
+        arr[i] = output[i];
+    }
+
+    printf("%d", arr[0]);
+    for (i = 1; i < n; i++)
+    {
+        printf(" %d", arr[i]);
+    }
+    printf("\n");
 }
 
 int main()
 {
-    int n, i, k = 0;
+    int n, i;
+    int arr[MAX_NUM];
 
-    scanf("%d", &n);
-
-    // Lendo o array A e encontrando o maior valor k
-    int *A = malloc(n * sizeof(int));
-    for (i = 0; i < n; i++)
+    n = 0;
+    while (scanf("%d", &arr[n]) == 1)
     {
-        scanf("%d", &A[i]);
-        if (A[i] > k)
-        {
-            k = A[i];
-        }
+        n++;
     }
 
-    // Criando o array de contagem C
-    int *C = malloc((k + 1) * sizeof(int));
-
-    counting_sort(A, C, n, k);
-
-    free(A);
-    free(C);
+    counting_sort(arr, n);
 
     return 0;
 }
