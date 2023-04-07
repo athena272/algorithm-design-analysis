@@ -18,7 +18,7 @@ void counting_sort(int arr[], int n)
     printf("%d", count[0]);
     for (i = 1; i <= MAX_NUM; i++)
     {
-        if ((count[i] == 0) && (count[i +1] == 0) && (count[i + 2] == 0) && (count[i + 3] == 0)) 
+        if ((count[i] == 0) && (count[i +1] == 0) && (count[i + 2] == 0)) 
         {
             break;
         }
